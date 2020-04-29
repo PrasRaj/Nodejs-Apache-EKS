@@ -1,0 +1,16 @@
+FROM node:10
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+workdir /home/node/app
+COPY package.json ./
+RUN npm install
+COPY --chown=node:node  . .
+RUN apt-get update && apt-get upgrade -y
+RUN  apt-get install apache2 -y
+RUN  service apache2 start
+RUN  a2enmod proxy; a2enmod proxy_http
+RUN  service apache2 restart
+COPY nodejs-apache.conf /etc/apache2/sites-available/
+RUN  a2dissite 000-default.conf
+RUN  a2ensite  nodejs-apache.conf
+EXPOSE 8068
+CMD node ubuntu-server.js; /usr/sbin/apache2ctl start
