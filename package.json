@@ -1,0 +1,16 @@
+{
+  "name": "app-first-nodejs",
+  "version": "1.0.0",
+  "description": "nodejs image demo",
+  "author": "Humblelearner-1",
+  "license": "MIT",
+  "main": "server.js",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
